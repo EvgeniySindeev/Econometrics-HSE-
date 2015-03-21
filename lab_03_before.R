@@ -77,3 +77,14 @@ df <- data.frame(D)
 model_pusto <- lm(data=df, X1~.)
 summary(model_pusto)
 
+# Сравнить несколько моделей
+
+model2 <- lm(data = h, Fertility~Catholic + Agriculture)
+model <- lm(data = h, Fertility~Catholic + Agriculture + Examination)
+compar_12 <- mtable(model, model2)
+
+# Сохранение результатов
+
+stuff <- list(data=h, model = model2)
+saveRDS(file = "my_data.rds", stuff)
+
