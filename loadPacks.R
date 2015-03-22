@@ -17,3 +17,14 @@ library("rlms")
 
 h <- read.rlms("r21i_os24a.sav")
 saveRDS(h, file = "r21i_os24a.rds")
+
+h2 <- select(h, qm1, qm2, qh6, qh5)
+describe(h2)
+h3 <- rename(h2, ves = qm1, rost = qm2, sex = qh5, b_year = qh6)
+h3 <- mutate(h3, vozrast = 2012 - b_year)
+describe(h3)
+summary(h3$sex)
+
+h4 <- filter(h3, sex == "ÌÓÆÑÊÎÉ")
+qplot(data = h4, rost, ves)
+qplot(data = h4, ves) 
